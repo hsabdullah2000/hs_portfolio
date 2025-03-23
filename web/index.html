@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/hs_portfolio/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Syed Muhammad Abdullah - Flutter Developer Portfolio. Showcasing skills and projects including the Vroom application.">
+  <meta name="keywords" content="Flutter, Developer, Portfolio, Syed Muhammad Abdullah, Mobile App Development, Web Development">
+  <meta name="author" content="Syed Muhammad Abdullah">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Syed Muhammad Abdullah | Portfolio">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Syed Muhammad Abdullah | Flutter Developer Portfolio</title>
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Add Open Graph meta tags for better social media sharing -->
+  <meta property="og:title" content="Syed Muhammad Abdullah | Portfolio">
+  <meta property="og:description" content="Flutter Developer specializing in mobile and web applications. Check out my projects and skills.">
+  <meta property="og:type" content="website">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #272E4F;
+    }
+    
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #272E4F;
+      z-index: 9999;
+    }
+    
+    .loading-content {
+      text-align: center;
+    }
+    
+    .loading-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+      font-size: 24px;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-top-color: #5D8BF4;
+      border-radius: 50%;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading indicator -->
+  <div class="loading" id="loading">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading Portfolio...</div>
+    </div>
+  </div>
+  
+  <!-- Flutter initialization -->
+  <script src="flutter.js" defer></script>
+  <script>
+    window.addEventListener('load', function() {
+      // Hide loading indicator after a delay to ensure Flutter has time to initialize
+      setTimeout(function() {
+        var loadingElement = document.getElementById('loading');
+        if (loadingElement) {
+          loadingElement.style.display = 'none';
+        }
+      }, 3000);
+      
+      // Initialize Flutter Web using the recommended approach
+      _flutter.loader.load({
+        serviceWorker: {
+          serviceWorkerVersion: '{{flutter_service_worker_version}}',
+        }
+      }).then(function(engineInitializer) {
+        return engineInitializer.initializeEngine();
+      }).then(function(appRunner) {
+        return appRunner.runApp();
+      });
+    });
+  </script>
+</body>
+</html>
